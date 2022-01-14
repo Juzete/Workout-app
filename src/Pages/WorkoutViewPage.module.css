@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "SF Pro Text SemiBold";
+  src: local("SF Pro Text SemiBold"),
+    url(../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "SF Pro Text Normal";
+  src: local("SF Pro Text Normal"),
+    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1440px;
+  margin-top: 96px;
+}
+
+.arrow {
+  display: flex;
+  padding-bottom: 24px;
+  width: 800px;
+}
+
+.preview {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-left: 320px;
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
+
+.title span {
+  display: block;
+  width: 100%;
+  padding-top: 3px;
+  color: #212121;
+  font-style: normal;
+}
+
+.title span:nth-child(odd) {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: SF Pro Text Normal;
+}
+
+.title span:nth-child(2) {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  font-family: SF Pro Text SemiBold;
+}
+
+.start_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  position: sticky;
+  bottom: 30px;
+  width: 800px;
+  height: 50px;
+  background-color: #aa00ff;
+  box-shadow: 0px 16px 32px rgba(170, 0, 255, 0.24);
+  border-radius: 8px;
+  color: white;
+  font-family: SF Pro Text Normal;
+  width: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+  border: none;
+  transition: 1s;
+}
+
+.start_button:hover {
+  transform: scale(1.01);
+  background-color: #c550ff;
+  box-shadow: 0px 16px 32px rgba(170, 0, 255, 0.596);
+}
+
+@media screen and (max-width: 375px) {
+  .wrapper {
+    width: 360px;
+  }
+  .arrow {
+    width: 370px;
+  }
+  .title {
+    margin-left: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .start_button {
+    width: 300px;
+    height: 56px;
+  }
+  .preview img {
+    width: 360px;
+    height: 210px;
+  }
+}

@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "SF Pro Text Normal";
+  src: local("SF Pro Text Normal"),
+    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+}
+
+.pause_wrapper {
+  position: absolute;
+  width: 100%;
+  height: 99%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  top: 0px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.253);
+  font-family: SF Pro Text Normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+.pause_wrapper div {
+  width: 100%;
+}
+
+.pause_wrapper div span {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+.pause_wrapper div span:nth-child(1) {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.pause_wrapper div span:nth-child(2) {
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.pause_wrapper .leave_button {
+  color: white;
+  border: 2px solid white;
+  padding: 10px;
+  text-decoration: none;
+  transition: 1s;
+}
+
+.pause_wrapper .leave_button:hover {
+  background: white;
+  color: #000;
+}

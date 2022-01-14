@@ -1,0 +1,73 @@
+@font-face {
+  font-family: "SF Pro Text SemiBold";
+  src: local("SF Pro Text SemiBold"),
+    url(../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "SF Pro Text Normal";
+  src: local("SF Pro Text Normal"),
+    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+}
+
+.head {
+  display: block;
+  width: 100%;
+  color: #212121;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: SF Pro Text SemiBold;
+  margin-bottom: 15px;
+}
+
+.wrapper {
+  width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 33px;
+}
+
+.exercies_item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-family: SF Pro Text SemiBold;
+  font-style: normal;
+  color: #212121;
+  margin-bottom: 8px;
+}
+
+.exercies_item img {
+  margin-right: 16px;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.duration {
+  font-weight: 200;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: SF Pro Text Normal;
+}
+
+@media screen and (max-width: 375px) {
+  .wrapper {
+    width: 370px;
+    margin-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 33px;
+  }
+  .title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
