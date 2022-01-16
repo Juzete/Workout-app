@@ -51,11 +51,8 @@ const WorkoutList: React.FC = () => {
       </div>
     );
   }
-  if (error) {
-    return <h1>{error}</h1>;
-  }
 
-  return <div>{workoutListMap(workouts)}</div>;
+  return <div>{error ? <h1>{error}</h1> : workoutListMap(workouts)}</div>;
 };
 
 export default WorkoutList;

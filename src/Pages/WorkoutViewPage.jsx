@@ -7,7 +7,7 @@ import { startWorkoutButtonHandler } from "../utils/startWorkoutButtonHandler";
 import styles from "./WorkoutViewPage.module.css";
 
 const WorkoutViewPage = () => {
-  const { exercises } = useTypedSelector((state) => state.workout);
+  const { exercises, error } = useTypedSelector((state) => state.workout);
 
   useEffect(() => {}, [exercises]);
 
@@ -43,9 +43,11 @@ const WorkoutViewPage = () => {
         </span>
       </div>
       <WorkoutList />
-      <Link to={"/workout-exercise-view"} className={styles.start_button}>
-        {startWorkoutButtonHandler(exercises)}
-      </Link>
+      {!error ? (
+        <Link to={"/workout-exercise-view"} className={styles.start_button}>
+          {startWorkoutButtonHandler(exercises)}
+        </Link>
+      ) : null}
     </div>
   );
 };
