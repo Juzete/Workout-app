@@ -15,13 +15,17 @@ const WorkoutExerciseViewPage = () => {
   const [isPassed, setIsPassed] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [videoButton, setVideoButton] = useState("pause");
-  const [videoIsPaused, setVideoIsPaused] = useState(false);
   const [nextPage, setNextPage] = useState(-1);
   const [prevPage, setPrevPage] = useState(-1);
   const [workoutComplete, setWorkoutComplete] = useState(false);
   const videoRef = useRef(null);
-  const { setCurrentExercises } = useActions();
-  const { exercises, currentExercises } = useTypedSelector(
+  const {
+    setCurrentExercises,
+    SetWorkoutIsPaused,
+    setCurrentDuration,
+    setExercisesToView,
+  } = useActions();
+  const { exercises, currentExercises, isPaused } = useTypedSelector(
     (state) => state.workout
   );
 
@@ -33,9 +37,10 @@ const WorkoutExerciseViewPage = () => {
     return toView;
   };
 
-  const [exercisesToView, setExercisesToView] = useState(setExercisesById());
+  const [exercisesToView, SetExercisesToView] = useState(setExercisesById());
 
   useEffect(() => {
+    setExercisesToView(setExercisesById());
     handlePaginationButtons(
       exercises,
       currentExercises,
@@ -53,14 +58,18 @@ const WorkoutExerciseViewPage = () => {
           setWorkoutComplete(true);
           return;
         }
-        if (!exercises[i].hasOwnProperty("isPassed")) {
+        if (
+          !exercises[i].hasOwnProperty("isPassed") ||
+          exercises[i].isPassed === false
+        ) {
           setCurrentExercises(exercises[i].id);
           setIsPassed(false);
           return;
         }
       }
     }
-    setExercisesToView(setExercisesById());
+    SetExercisesToView(setExercisesById());
+    setCurrentDuration(exercisesToView.duration);
   }, [currentExercises, isComplete, isPassed, exercisesToView, exercises]);
 
   const handlePassed = (isPassed) => {
@@ -72,11 +81,11 @@ const WorkoutExerciseViewPage = () => {
   const handleVideoButton = () => {
     if (videoButton === "pause") {
       videoRef.current.pause();
-      setVideoIsPaused(true);
+      SetWorkoutIsPaused(true);
       setVideoButton("resume");
     } else {
       videoRef.current.play();
-      setVideoIsPaused(false);
+      SetWorkoutIsPaused(false);
       setVideoButton("pause");
     }
   };
@@ -97,11 +106,9 @@ const WorkoutExerciseViewPage = () => {
           )}
           <div className={styles.wrapper}>
             <PaginationAndTimer
-              duration={exercisesToView.duration}
               isPassed={handlePassed}
               isComplete={handleComplete}
               videoRef={videoRef}
-              isPaused={videoIsPaused}
               nextPage={nextPage}
               prevPage={prevPage}
             />
@@ -113,7 +120,7 @@ const WorkoutExerciseViewPage = () => {
               ref={videoRef}
               src={exercisesToView.video}
             ></video>
-            {videoIsPaused ? <WorkoutPaused /> : null}
+            {isPaused ? <WorkoutPaused /> : null}
           </div>
           <>
             {isComplete && !workoutComplete ? (

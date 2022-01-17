@@ -7,8 +7,9 @@ import styles from "./PaginationAndTimer.module.css";
 const PaginationAndTimer = (props) => {
   const [isComplete, setIsComplete] = useState(false);
   const [isPassed, setIsPassed] = useState(false);
-  const [currentSeconds, setCurrentSeconds] = useState(props.duration);
-  const { currentExercises } = useTypedSelector((state) => state.workout);
+  const { currentExercises, isPaused, currentDuration } = useTypedSelector(
+    (state) => state.workout
+  );
 
   const handleComplete = (condition) => {
     setIsComplete(condition);
@@ -19,35 +20,26 @@ const PaginationAndTimer = (props) => {
     setIsPassed(condition);
     props.isPassed(condition);
   };
-  const handleCurrentSeconds = (seconds) => {
-    setCurrentSeconds(seconds);
-  };
 
   useEffect(() => {
-    if (isComplete === true && !props.isPaused) props.videoRef.current.play();
+    if (isComplete === true && !isPaused) props.videoRef.current.play();
     else props.videoRef.current.pause();
-    if (isPassed) setCurrentSeconds(props.duration);
-  }, [
-    isComplete,
-    isPassed,
-    currentSeconds,
-    props.isPaused,
-    props.duration,
-    currentExercises,
-    props,
-  ]);
+  }, [isComplete, isPassed, isPaused, currentExercises, props]);
 
   return (
     <>
       <div className={styles.prevPage}>
         {" "}
-        {props.prevPage > -1 ? <ExercisesPagination direction="prev" /> : null}
+        {props.prevPage > -1 ? (
+          <ExercisesPagination direction="prev" setComplete={setIsComplete} />
+        ) : null}
       </div>
 
       <div className={styles.timer}>
         {" "}
         {isComplete === false ? (
           <CircleTimer
+            completed={isComplete}
             seconds={5}
             color={"#1DE9B6"}
             isComplete={handleComplete}
@@ -55,17 +47,18 @@ const PaginationAndTimer = (props) => {
           />
         ) : (
           <CircleTimer
-            seconds={currentSeconds}
+            completed={isComplete}
+            seconds={currentDuration}
             color={"#FF4081"}
             isComplete={handleComplete}
             isPassed={handlePassed}
-            isPaused={props.isPaused}
-            currentSeconds={handleCurrentSeconds}
           />
         )}
       </div>
       <div className={styles.nextPage}>
-        {props.nextPage > -1 ? <ExercisesPagination direction="next" /> : null}
+        {props.nextPage > -1 ? (
+          <ExercisesPagination direction="next" setComplete={setIsComplete} />
+        ) : null}
       </div>
     </>
   );

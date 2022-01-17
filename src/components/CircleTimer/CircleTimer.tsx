@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import CSS from "csstype";
 import CircleProgressBar from "./ProgressBar/CircleProgressBar";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
 
 interface ListProps {
+  completed: boolean;
   seconds: number;
   color: string;
   isComplete: (condition: boolean) => boolean;
   isPassed: (condition: boolean) => boolean;
   currentSeconds: (seconds: number) => number;
-  isPaused?: boolean;
 }
 
 const CircleTimer = (props: ListProps) => {
-  const { currentExercises } = useTypedSelector((state) => state.workout);
   const timer_styles: CSS.Properties = {
     width: "120px",
     display: "flex",
@@ -46,22 +46,41 @@ const CircleTimer = (props: ListProps) => {
       }
       `;
 
+  const { currentExercises, isPaused, exercisesToView } = useTypedSelector(
+    (state) => state.workout
+  );
+  const { setCurrentDuration } = useActions();
+
   const [progress, setProgress] = useState(0);
   const [seconds, setSeconds] = useState(props.seconds);
-  let stoper = 0;
+
+  let stopper = 0;
   const timerIncrement = props.seconds;
 
   useEffect(() => {
-    if (!props.isPaused) setSeconds(props.seconds);
+    if (!isPaused) setSeconds(props.seconds);
+    if (isPaused && !props.completed) setSeconds(props.seconds);
+    if (!props.completed && props.seconds === 5) {
+      setProgress(0);
+    }
+    if (isPaused) setCurrentDuration(seconds);
+  }, [props.seconds, exercisesToView, isPaused]);
+
+  useEffect(() => {
+    if (props.completed) setCurrentDuration(exercisesToView.duration);
+  }, [props.completed]);
+
+  useEffect(() => {
+    if (seconds === props.seconds && !isPaused) setProgress(0);
     const progressInterval = setInterval(() => {
-      if (stoper < 99.9) {
-        if (props.isPaused !== true) {
+      if (stopper < 99.9) {
+        if (!isPaused) {
           setProgress((progress) => progress + 0.1);
           setSeconds((seconds) => seconds - timerIncrement / 1000);
-          stoper += 0.1;
+          stopper += 0.1;
         }
       }
-      if (stoper >= 99.9) {
+      if (stopper >= 99.9) {
         props.isComplete(true);
         if (props.seconds === 5) {
           props.isPassed(false);
@@ -72,13 +91,13 @@ const CircleTimer = (props: ListProps) => {
         }
       }
     }, props.seconds);
-    if (props.isPaused) {
-      props.currentSeconds(seconds);
+    if (isPaused) {
+      setCurrentDuration(seconds);
     }
     return () => {
       clearInterval(progressInterval);
     };
-  }, [props, currentExercises]);
+  }, [props.seconds, currentExercises, isPaused]);
 
   return (
     <div style={wrapper}>

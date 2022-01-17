@@ -2,12 +2,14 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import WorkoutList from "../components/WorkoutList";
+import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { startWorkoutButtonHandler } from "../utils/startWorkoutButtonHandler";
 import styles from "./WorkoutViewPage.module.css";
 
 const WorkoutViewPage = () => {
   const { exercises, error } = useTypedSelector((state) => state.workout);
+  const { SetWorkoutIsPaused } = useActions();
 
   useEffect(() => {}, [exercises]);
 
@@ -44,7 +46,11 @@ const WorkoutViewPage = () => {
       </div>
       <WorkoutList />
       {!error ? (
-        <Link to={"/workout-exercise-view"} className={styles.start_button}>
+        <Link
+          to={"/workout-exercise-view"}
+          className={styles.start_button}
+          onClick={() => SetWorkoutIsPaused(false)}
+        >
           {startWorkoutButtonHandler(exercises)}
         </Link>
       ) : null}

@@ -10,6 +10,18 @@ const initialState: WorkoutState = {
   loading: false,
   exercises: [],
   currentExercises: -1,
+  isPaused: false,
+  currentDuration: 0,
+  exercisesToView: {
+    id: 0,
+    title: "",
+    duration: 0,
+    video: "",
+    photo: "",
+    description: "",
+    isPassed: false,
+    length: 0,
+  },
 };
 
 export const workoutReducer = (
@@ -27,6 +39,12 @@ export const workoutReducer = (
       return { ...state, exercises: action.payload };
     case WorkoutActionTypes.SET_CURRENT_EXERCISES:
       return { ...state, currentExercises: action.payload };
+    case WorkoutActionTypes.SET_WORKOUT_IS_PAUSED:
+      return { ...state, isPaused: action.payload };
+    case WorkoutActionTypes.SET_CURRENT_DURATION:
+      return { ...state, currentDuration: action.payload };
+    case WorkoutActionTypes.SET_EXERCISES_TO_VIEW:
+      return { ...state, exercisesToView: action.payload };
     default:
       return state;
   }

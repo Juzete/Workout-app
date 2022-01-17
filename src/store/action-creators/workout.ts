@@ -1,3 +1,4 @@
+import { iExercises } from "./../../types/workout";
 import { Dispatch } from "redux";
 import axios from "axios";
 import { WorkoutAction, WorkoutActionTypes } from "../../types/workout";
@@ -38,5 +39,32 @@ export const fetchWorkouts = () => {
 export const setCurrentExercises = (id: number) => {
   return (dispatch: Dispatch<WorkoutAction>) => {
     dispatch({ type: WorkoutActionTypes.SET_CURRENT_EXERCISES, payload: id });
+  };
+};
+
+export const SetWorkoutIsPaused = (isPaused: boolean) => {
+  return (dispatch: Dispatch<WorkoutAction>) => {
+    dispatch({
+      type: WorkoutActionTypes.SET_WORKOUT_IS_PAUSED,
+      payload: isPaused,
+    });
+  };
+};
+
+export const setCurrentDuration = (duration: number) => {
+  return (dispatch: Dispatch<WorkoutAction>) => {
+    dispatch({
+      type: WorkoutActionTypes.SET_CURRENT_DURATION,
+      payload: duration,
+    });
+  };
+};
+
+export const setExercisesToView = (exercises: iExercises) => {
+  return (dispatch: Dispatch<WorkoutAction>) => {
+    dispatch({
+      type: WorkoutActionTypes.SET_EXERCISES_TO_VIEW,
+      payload: exercises,
+    });
   };
 };

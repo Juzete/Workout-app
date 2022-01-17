@@ -4,6 +4,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface ListProps {
   direction: string;
+  setComplete: (condition: boolean) => boolean;
 }
 
 const ExercisesPagination = (props: ListProps) => {
@@ -15,8 +16,22 @@ const ExercisesPagination = (props: ListProps) => {
   const handlePaginationButtons = (condition: string) => {
     const idsArray = exercises.map((item) => item.id);
     const currentIndex = idsArray.indexOf(currentExercises);
-    if (condition === "prev") setCurrentExercises(idsArray[currentIndex - 1]);
-    else setCurrentExercises(idsArray[currentIndex + 1]);
+    if (condition === "prev") {
+      for (let i = 0; i < exercises.length; i++) {
+        if (exercises[i].id === currentExercises) {
+          exercises[i].isPassed = false;
+        }
+      }
+      setCurrentExercises(idsArray[currentIndex - 1]);
+    } else {
+      for (let i = 0; i < exercises.length; i++) {
+        if (exercises[i].id === currentExercises) {
+          exercises[i].isPassed = true;
+        }
+      }
+      setCurrentExercises(idsArray[currentIndex + 1]);
+    }
+    props.setComplete(false);
   };
   return (
     <div>
