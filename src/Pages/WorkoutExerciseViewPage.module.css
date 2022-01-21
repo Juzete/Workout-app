@@ -17,18 +17,14 @@
   padding-top: 72px;
 }
 
-span {
-  display: block;
+.page_wrapper .title {
+  display: flex;
+  justify-content: center;
   width: 100%;
   font-family: SF Pro Text SemiBold;
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
-}
-
-.page_wrapper .title {
-  display: flex;
-  justify-content: center;
 }
 
 .wrapper {

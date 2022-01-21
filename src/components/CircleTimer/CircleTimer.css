@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "SF Pro Text Normal";
+  src: local("SF Pro Text Normal"),
+    url(../../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+}
+
+.timer_wrapper {
+  height: 120px;
+  font-family: SF Pro Text Normal;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 56px;
+}
+
+.timer_wrapper .timer_styles {
+  width: 120px;
+  display: flex;
+  position: relative;
+  z-index: "10";
+  top: -105px;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}

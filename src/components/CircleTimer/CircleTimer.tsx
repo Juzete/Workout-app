@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import CSS from "csstype";
 import CircleProgressBar from "./ProgressBar/CircleProgressBar";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
+import "./CircleTimer.css";
 
 interface ListProps {
   completed: boolean;
@@ -14,38 +14,6 @@ interface ListProps {
 }
 
 const CircleTimer = (props: ListProps) => {
-  const timer_styles: CSS.Properties = {
-    width: "120px",
-    display: "flex",
-    position: "relative",
-    zIndex: "10",
-    top: "-95px",
-    justifyContent: "center",
-    alignItems: "center",
-    transition: "0.3s",
-  };
-
-  const wrapper: CSS.Properties = {
-    height: "120px",
-  };
-
-  const font_face = `
-      @font-face {
-          font-family: "SF Pro Text Normal";
-          src: local("SF Pro Text Normal"),
-            url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
-        }
-      
-      .timer_digits {
-          font-family: SF Pro Text Normal;
-          font-style: normal;
-          font-weight: 600;
-          font-size: 40px;
-          line-height: 56px;
-          color: ${props.color};
-      }
-      `;
-
   const { currentExercises, isPaused, exercisesToView } = useTypedSelector(
     (state) => state.workout
   );
@@ -98,10 +66,9 @@ const CircleTimer = (props: ListProps) => {
       clearInterval(progressInterval);
     };
   }, [props.seconds, currentExercises, isPaused]);
-
+  //115 inline style
   return (
-    <div style={wrapper}>
-      <style>{font_face}</style>
+    <div className="timer_wrapper">
       <CircleProgressBar
         width="120"
         height="120"
@@ -112,7 +79,7 @@ const CircleTimer = (props: ListProps) => {
         r="52"
         progress={progress}
       />
-      <span style={timer_styles} className="timer_digits">
+      <span className="timer_styles" style={{ color: props.color }}>
         {Math.floor(seconds) + 1}
       </span>
     </div>

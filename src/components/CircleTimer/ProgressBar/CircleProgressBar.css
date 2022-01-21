@@ -1,0 +1,4 @@
+.progress_ring {
+  position: relative;
+  z-index: -10;
+}

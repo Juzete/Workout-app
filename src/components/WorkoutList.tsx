@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 import { workoutListMap } from "../utils/workoutListMap";
-import CircleProgressBar from "./CircleTimer/ProgressBar/CircleProgressBar";
-import CSS from "csstype";
+import "./WorkoutList.css";
+import Loader from "./Loader";
 
 const WorkoutList: React.FC = () => {
   const { workouts, loading, error } = useTypedSelector(
@@ -17,37 +17,10 @@ const WorkoutList: React.FC = () => {
     }
   }, []);
 
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const progressInterval = setInterval(() => {
-      setProgress((progress) => progress + 3);
-    }, 1);
-
-    return () => {
-      clearInterval(progressInterval);
-    };
-  }, []);
-
-  const wrapper: CSS.Properties = {
-    display: "flex",
-    justifyContent: "center",
-    width: "800px",
-  };
-
   if (loading) {
     return (
-      <div style={wrapper}>
-        {" "}
-        <CircleProgressBar
-          width="120"
-          height="120"
-          stroke={"black"}
-          strokeWidth="6"
-          cx="60"
-          cy="60"
-          r="52"
-          progress={progress}
-        />
+      <div className="workout_list__wrapper">
+        <Loader />
       </div>
     );
   }

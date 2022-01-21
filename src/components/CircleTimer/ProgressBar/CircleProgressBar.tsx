@@ -18,11 +18,6 @@ const CircleProgressBar = (props: ListProps) => {
     transition: "stroke-dashoffset 0.1s",
   };
 
-  const progress_ring: CSS.Properties = {
-    position: "relative",
-    zIndex: "-10",
-  };
-
   const radius = +props.r;
   const circumference = 2 * Math.PI * radius;
 
@@ -37,7 +32,7 @@ const CircleProgressBar = (props: ListProps) => {
   setProgress(props.progress);
 
   return (
-    <svg style={progress_ring} width={props.width} height={props.height}>
+    <svg className="progress_ring" width={props.width} height={props.height}>
       <circle
         stroke={"#EEEEEE"}
         strokeWidth={props.strokeWidth}

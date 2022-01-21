@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./VideoControlButton.module.css";
 
 const VideoControlButton = ({ condition }) => {
