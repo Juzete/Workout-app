@@ -36,3 +36,7 @@ For API requests, axios was used.
 - **store** Contains everything you need to work with the store, namely action creators, reducers and of course the store itself
 - **types** Contains data types for TypeScript
 - **utils** Contains utilities for the project
+
+# NOTE
+
+All components and their dependencies should be located in separate folders.
