@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
-import { workoutListMap } from "../utils/workoutListMap";
 import "./WorkoutList.css";
-import Loader from "./Loader";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { workoutListMap } from "../../utils/workoutListMap";
+import Loader from "../Loader/Loader";
 
 const WorkoutList: React.FC = () => {
   const { workouts, loading, error } = useTypedSelector(

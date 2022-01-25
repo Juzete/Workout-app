@@ -6,13 +6,13 @@
 @font-face {
   font-family: "SF Pro Text SemiBold";
   src: local("SF Pro Text SemiBold"),
-    url(../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
 }
 
 @font-face {
   font-family: "SF Pro Text Normal";
   src: local("SF Pro Text Normal"),
-    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
 }
 
 body {
@@ -20,7 +20,7 @@ body {
   justify-content: center;
 }
 
-.wrapper {
+.workoutViewPage_wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -100,7 +100,7 @@ body {
 }
 
 @media screen and (max-width: 375px) {
-  .wrapper {
+  .workoutViewPage_wrapper {
     width: 360px;
   }
   .arrow {

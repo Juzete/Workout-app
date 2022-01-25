@@ -1,11 +1,10 @@
-import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import WorkoutList from "../components/WorkoutList";
-import { useActions } from "../hooks/useActions";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { startWorkoutButtonHandler } from "../utils/startWorkoutButtonHandler";
-import styles from "./WorkoutViewPage.module.css";
+import WorkoutList from "../../components/WorkoutList/WorkoutList";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { startWorkoutButtonHandler } from "../../utils/startWorkoutButtonHandler";
+import "./WorkoutViewPage.css";
 
 const WorkoutViewPage = () => {
   const { exercises, error } = useTypedSelector((state) => state.workout);
@@ -14,8 +13,8 @@ const WorkoutViewPage = () => {
   useEffect(() => {}, [exercises]);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.arrow}>
+    <div className={"workoutViewPage_wrapper"}>
+      <div className={"arrow"}>
         <a href="#">
           <svg
             width="24"
@@ -32,15 +31,13 @@ const WorkoutViewPage = () => {
         </a>
       </div>
 
-      <div className={styles.preview}>
+      <div className={"preview"}>
         <img src="https://i.imgur.com/R51sF4W.png" alt="preview" />
       </div>
-      <div className={styles.title}>
-        <span className={styles.exercise_description}>Day 1</span>
-        <span className={styles.exercise_name}>
-          Morning Flexibility Routine
-        </span>
-        <span className={styles.exercise_description}>
+      <div className={"title"}>
+        <span className={"exercise_description"}>Day 1</span>
+        <span className={"exercise_name"}>Morning Flexibility Routine</span>
+        <span className={"exercise_description"}>
           Easy • 15 min • No equipment
         </span>
       </div>
@@ -48,7 +45,7 @@ const WorkoutViewPage = () => {
       {!error ? (
         <Link
           to={"/workout-exercise-view"}
-          className={styles.start_button}
+          className={"start_button"}
           onClick={() => SetWorkoutIsPaused(false)}
         >
           {startWorkoutButtonHandler(exercises)}

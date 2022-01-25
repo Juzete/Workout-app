@@ -1,15 +1,15 @@
 @font-face {
   font-family: "SF Pro Text SemiBold";
   src: local("SF Pro Text SemiBold"),
-    url(../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
 }
 @font-face {
   font-family: "SF Pro Text Normal";
   src: local("SF Pro Text Normal"),
-    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
 }
 
-.page_wrapper {
+.WorkoutExerciseViewPage__page_wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -17,9 +17,10 @@
   padding-top: 72px;
 }
 
-.page_wrapper .title {
+.WorkoutExerciseViewPage__page_wrapper .title {
   display: flex;
   justify-content: center;
+  margin: 0 auto;
   width: 100%;
   font-family: SF Pro Text SemiBold;
   font-weight: 600;
@@ -27,7 +28,7 @@
   line-height: 32px;
 }
 
-.wrapper {
+.WorkoutExerciseViewPage__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,14 +88,14 @@ button:hover {
 }
 
 @media screen and (max-width: 375px) {
-  .page_wrapper {
+  .WorkoutExerciseViewPage__page_wrapper {
     width: 370px;
     padding-top: 72px;
   }
   video {
     width: 100%;
   }
-  .wrapper {
+  .WorkoutExerciseViewPage__wrapper {
     width: 300px;
     margin-top: 32px;
     padding: auto;

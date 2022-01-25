@@ -4,7 +4,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface ListProps {
   direction: string;
-  setComplete: (condition: boolean) => boolean;
+  setComplete: (condition: boolean) => void;
 }
 
 const ExercisesPagination = (props: ListProps) => {

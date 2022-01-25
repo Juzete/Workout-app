@@ -1,32 +1,36 @@
 @font-face {
   font-family: "SF Pro Text SemiBold";
   src: local("SF Pro Text SemiBold"),
-    url(../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Semibold.otf) format("opentype");
 }
 @font-face {
   font-family: "SF Pro Text Normal";
   src: local("SF Pro Text Normal"),
-    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
 }
 
-.page_wrapper {
+.WorkoutCompletePage__page_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.page_wrapper svg {
+.WorkoutCompletePage__page_wrapper svg {
   margin-top: 140px;
 }
 
-.page_wrapper span {
+.WorkoutCompletePage__page_wrapper span {
   display: flex;
   width: 100%;
   justify-content: center;
+  font-family: SF Pro Text SemiBold;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 36px;
 }
 
-.page_wrapper .header {
+.WorkoutCompletePage__page_wrapper .header {
   font-family: SF Pro Text SemiBold;
   font-style: normal;
   font-weight: 600;
@@ -34,7 +38,7 @@
   line-height: 56px;
 }
 
-.page_wrapper .grey_text {
+.WorkoutCompletePage__page_wrapper .grey_text {
   font-family: SF Pro Text Normal;
   font-style: normal;
   font-weight: normal;
@@ -43,12 +47,12 @@
   color: #7c7c7c;
 }
 
-.page_wrapper div {
+.WorkoutCompletePage__page_wrapper div {
   width: 100%;
   margin-top: 32px;
 }
 
-.page_wrapper div .save_button {
+.WorkoutCompletePage__page_wrapper div .save_button {
   display: flex;
   justify-content: center;
   text-decoration: none;
@@ -67,11 +71,11 @@
 }
 
 @media screen and (max-width: 375px) {
-  .page_wrapper .header {
+  .WorkoutCompletePage__page_wrapper .header {
     font-size: 28px;
     line-height: 36px;
   }
-  .page_wrapper .grey_text {
+  .WorkoutCompletePage__page_wrapper .grey_text {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
@@ -79,7 +83,7 @@
     font-size: 18px;
     line-height: 24px;
   }
-  .page_wrapper div .save_button {
+  .WorkoutCompletePage__page_wrapper div .save_button {
     width: 300px;
     height: 48px;
   }

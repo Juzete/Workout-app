@@ -2,7 +2,7 @@ import { iExercises } from "../types/workout";
 
 export const handleMinutes = (
   exercises: iExercises[],
-  setMinutes: (min: number) => number
+  setMinutes: (min: number) => void
 ) => {
   const minutes = exercises.reduce((sum, current) => {
     return sum + current.duration;

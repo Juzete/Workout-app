@@ -1,7 +1,7 @@
 @font-face {
   font-family: "SF Pro Text Normal";
   src: local("SF Pro Text Normal"),
-    url(../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
+    url(../../assets/fonts/SF-Pro-Display-Light.otf) format("opentype");
 }
 
 .pause_wrapper {

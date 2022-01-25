@@ -10,7 +10,7 @@ interface ListProps {
   color: string;
   isComplete: (condition: boolean) => boolean;
   isPassed: (condition: boolean) => boolean;
-  currentSeconds: (seconds: number) => number;
+  currentSeconds?: (seconds: number) => number;
 }
 
 const CircleTimer = (props: ListProps) => {

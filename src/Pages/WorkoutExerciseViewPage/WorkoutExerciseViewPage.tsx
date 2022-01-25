@@ -2,14 +2,15 @@ import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import styles from "./WorkoutExerciseViewPage.module.css";
+import "./WorkoutExerciseViewPage.css";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import PaginationAndTimer from "../../components/PaginationAndTimer/PaginationAndTimer";
 import VideoControlButton from "../../components/VideoControlButton/VideoControlButton";
-import WorkoutPaused from "../components/WorkoutPaused";
 import { Link } from "react-router-dom";
 import { handlePaginationButtons } from "../../utils/handlePaginationButtons";
+import WorkoutPaused from "../../components/WorkoutPaused/WorkoutPaused";
+import { iExercises } from "../../types/workout";
 
 const WorkoutExerciseViewPage = () => {
   const [isPassed, setIsPassed] = useState(false);
@@ -18,7 +19,7 @@ const WorkoutExerciseViewPage = () => {
   const [nextPage, setNextPage] = useState(-1);
   const [prevPage, setPrevPage] = useState(-1);
   const [workoutComplete, setWorkoutComplete] = useState(false);
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const {
     setCurrentExercises,
     SetWorkoutIsPaused,
@@ -29,8 +30,8 @@ const WorkoutExerciseViewPage = () => {
     (state) => state.workout
   );
 
+  let toView: iExercises;
   const setExercisesById = () => {
-    let toView;
     exercises.forEach((item) => {
       if (item.id === currentExercises) toView = item;
     });
@@ -40,6 +41,7 @@ const WorkoutExerciseViewPage = () => {
   const [exercisesToView, SetExercisesToView] = useState(setExercisesById());
 
   useEffect(() => {
+    console.log({ isComplete }, { isPassed });
     setExercisesToView(setExercisesById());
     handlePaginationButtons(
       exercises,
@@ -72,39 +74,41 @@ const WorkoutExerciseViewPage = () => {
     setCurrentDuration(exercisesToView.duration);
   }, [currentExercises, isComplete, isPassed, exercisesToView, exercises]);
 
-  const handlePassed = (isPassed) => {
+  const handlePassed = (isPassed: boolean) => {
     setIsPassed(isPassed);
+    return isPassed;
   };
-  const handleComplete = (isComplete) => {
+  const handleComplete = (isComplete: boolean) => {
     setIsComplete(isComplete);
+    return isComplete;
   };
   const handleVideoButton = () => {
     if (videoButton === "pause") {
-      videoRef.current.pause();
+      videoRef.current!.pause();
       SetWorkoutIsPaused(true);
       setVideoButton("resume");
     } else {
-      videoRef.current.play();
+      videoRef.current!.play();
       SetWorkoutIsPaused(false);
       setVideoButton("pause");
     }
   };
 
   return (
-    <div className={styles.page_wrapper}>
+    <div className={"WorkoutExerciseViewPage__page_wrapper"}>
       {workoutComplete ? (
-        <Link to={"/workout-complete"} className={styles.complete_button}>
+        <Link to={"/workout-complete"} className={"complete_button"}>
           Workout completed!
         </Link>
       ) : null}
       {!workoutComplete ? (
         <>
           {isComplete && !workoutComplete ? (
-            <span className={styles.title}>{exercisesToView.title}</span>
+            <span className={"title"}>{exercisesToView.title}</span>
           ) : (
-            <span className={styles.title}>Get Ready </span>
+            <span className={"title"}>Get Ready </span>
           )}
-          <div className={styles.wrapper}>
+          <div className={"WorkoutExerciseViewPage__wrapper"}>
             <PaginationAndTimer
               isPassed={handlePassed}
               isComplete={handleComplete}
@@ -113,9 +117,9 @@ const WorkoutExerciseViewPage = () => {
               prevPage={prevPage}
             />
           </div>
-          <div className={styles.video_wrapper}>
+          <div className={"video_wrapper"}>
             <video
-              muted={"muted"}
+              muted={true}
               loop={true}
               ref={videoRef}
               src={exercisesToView.video}
@@ -124,10 +128,7 @@ const WorkoutExerciseViewPage = () => {
           </div>
           <>
             {isComplete && !workoutComplete ? (
-              <button
-                className={styles.video_control}
-                onClick={handleVideoButton}
-              >
+              <button className={"video_control"} onClick={handleVideoButton}>
                 <VideoControlButton condition={videoButton} />
               </button>
             ) : null}

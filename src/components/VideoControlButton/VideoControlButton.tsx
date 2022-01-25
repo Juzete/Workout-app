@@ -1,9 +1,13 @@
-import styles from "./VideoControlButton.module.css";
+import "./VideoControlButton.css";
 
-const VideoControlButton = ({ condition }) => {
+interface ListProps {
+  condition: string;
+}
+
+const VideoControlButton = (props: ListProps) => {
   return (
-    <div className={styles.button_wrapper}>
-      {condition === "pause" ? (
+    <div className={"button__wrapper"}>
+      {props.condition === "pause" ? (
         <svg
           width="54"
           height="54"

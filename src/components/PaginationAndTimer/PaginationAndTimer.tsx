@@ -1,43 +1,53 @@
-import React, { useEffect, useState } from "react";
+import React, { Ref, useEffect, useState } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import CircleTimer from "../CircleTimer/CircleTimer";
 import ExercisesPagination from "./ExercisesPagination";
-import styles from "./PaginationAndTimer.module.css";
+import "./PaginationAndTimer.css";
 
-const PaginationAndTimer = (props) => {
+interface ListProps {
+  isPassed: (condition: boolean) => boolean;
+  isComplete: (condition: boolean) => boolean;
+  videoRef: React.RefObject<HTMLVideoElement>;
+  nextPage: number;
+  prevPage: number;
+}
+
+const PaginationAndTimer = (props: ListProps) => {
   const [isComplete, setIsComplete] = useState(false);
   const [isPassed, setIsPassed] = useState(false);
   const { currentExercises, isPaused, currentDuration } = useTypedSelector(
     (state) => state.workout
   );
 
-  const handleComplete = (condition) => {
+  const handleComplete = (condition: boolean) => {
     setIsComplete(condition);
     props.isComplete(condition);
     if (isPassed === true && condition === true) props.isPassed(false);
+    return condition;
   };
-  const handlePassed = (condition) => {
+  const handlePassed = (condition: boolean) => {
     setIsPassed(condition);
     props.isPassed(condition);
+    return condition;
   };
 
   useEffect(() => {
     if (isComplete === true && !isPaused) {
-      props.videoRef.current.play();
+      props.videoRef.current!.play();
     } else {
-      props.videoRef.current.pause();
+      props.videoRef.current!.pause();
     }
   }, [isComplete, isPassed, isPaused, currentExercises, props]);
 
   return (
     <>
-      <div className={styles.prevPage}>
+      <div className="prevPage">
         {props.prevPage > -1 ? (
           <ExercisesPagination direction="prev" setComplete={setIsComplete} />
         ) : null}
       </div>
 
-      <div className={styles.timer}>
+      <div className="timer">
         {isComplete === false ? (
           <CircleTimer
             completed={isComplete}
@@ -56,7 +66,7 @@ const PaginationAndTimer = (props) => {
           />
         )}
       </div>
-      <div className={styles.nextPage}>
+      <div className={"nextPage"}>
         {props.nextPage > -1 ? (
           <ExercisesPagination direction="next" setComplete={setIsComplete} />
         ) : null}

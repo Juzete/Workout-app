@@ -1,4 +1,4 @@
-import CircleProgressBar from "./CircleTimer/ProgressBar/CircleProgressBar";
+import CircleProgressBar from "../CircleTimer/ProgressBar/CircleProgressBar";
 import "./Loader.css";
 
 const Loader = () => {

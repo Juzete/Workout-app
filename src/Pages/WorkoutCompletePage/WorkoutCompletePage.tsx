@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { handleMinutes } from "../../utils/completePageMinutesHandler";
-import styles from "./WorkoutCompletePage.module.css";
+import "./WorkoutCompletePage.css";
 
 const WorkoutCompletePage = () => {
   const { exercises } = useTypedSelector((state) => state.workout);
@@ -13,7 +13,7 @@ const WorkoutCompletePage = () => {
   }, []);
 
   return (
-    <div className={styles.page_wrapper}>
+    <div className={"WorkoutCompletePage__page_wrapper"}>
       <svg
         width="57"
         height="44"
@@ -27,8 +27,8 @@ const WorkoutCompletePage = () => {
         />
       </svg>
 
-      <span className={styles.header}>Workout completed!</span>
-      <span className={styles.grey_text}>
+      <span className={"header"}>Workout completed!</span>
+      <span className={"grey_text"}>
         Nice job. You’re done. Here’s the workout summary.
       </span>
       <div>
@@ -36,7 +36,7 @@ const WorkoutCompletePage = () => {
         <span>{minutes}</span>
       </div>
       <div>
-        <Link to={"/"} className={styles.save_button}>
+        <Link to={"/"} className={"save_button"}>
           Save & Continue
         </Link>
       </div>

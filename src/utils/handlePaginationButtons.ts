@@ -2,8 +2,8 @@ import { iExercises } from "./../types/workout";
 export const handlePaginationButtons = (
   exercises: iExercises[],
   currentExercises: number,
-  setPrevPage: (num: number) => number,
-  setNextPage: (num: number) => number
+  setPrevPage: (num: number) => void,
+  setNextPage: (num: number) => void
 ) => {
   const idsArray = exercises.map((item) => item.id);
   const currentIndex = idsArray.indexOf(currentExercises);
