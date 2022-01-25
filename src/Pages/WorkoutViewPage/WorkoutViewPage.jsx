@@ -41,7 +41,7 @@ const WorkoutViewPage = () => {
           Morning Flexibility Routine
         </span>
         <span className={styles.exercise_description}>
-          Easy • 15 min • No equipment{" "}
+          Easy • 15 min • No equipment
         </span>
       </div>
       <WorkoutList />

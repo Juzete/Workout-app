@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { handleMinutes } from "../utils/completePageMinutesHandler";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { handleMinutes } from "../../utils/completePageMinutesHandler";
 import styles from "./WorkoutCompletePage.module.css";
 
 const WorkoutCompletePage = () => {
@@ -36,7 +36,6 @@ const WorkoutCompletePage = () => {
         <span>{minutes}</span>
       </div>
       <div>
-        {" "}
         <Link to={"/"} className={styles.save_button}>
           Save & Continue
         </Link>

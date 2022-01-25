@@ -8,10 +8,10 @@ export const workoutListMap = (workouts) => {
         {workout.exercises.map((exercies) => {
           return (
             <div key={exercies.id} className={styles.exercies_item}>
-              <img src={exercies.photo} alt="preview" width={"64px"}></img>{" "}
+              <img src={exercies.photo} alt="preview" width={"64px"}></img>
               <div>
                 <span className={styles.title}>
-                  {exercies.title}{" "}
+                  {exercies.title}
                   {exercies.isPassed ? (
                     <svg
                       width="30"
@@ -26,7 +26,7 @@ export const workoutListMap = (workouts) => {
                       />
                     </svg>
                   ) : null}
-                </span>{" "}
+                </span>
                 <span className={styles.duration}>{exercies.duration} sec</span>
               </div>
             </div>

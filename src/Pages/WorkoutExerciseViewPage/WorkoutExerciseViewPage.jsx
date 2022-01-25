@@ -3,13 +3,13 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import styles from "./WorkoutExerciseViewPage.module.css";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import { useActions } from "../hooks/useActions";
-import PaginationAndTimer from "../components/PaginationAndTimer/PaginationAndTimer";
-import VideoControlButton from "../components/VideoControlButton";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
+import PaginationAndTimer from "../../components/PaginationAndTimer/PaginationAndTimer";
+import VideoControlButton from "../../components/VideoControlButton/VideoControlButton";
 import WorkoutPaused from "../components/WorkoutPaused";
 import { Link } from "react-router-dom";
-import { handlePaginationButtons } from "../utils/handlePaginationButtons";
+import { handlePaginationButtons } from "../../utils/handlePaginationButtons";
 
 const WorkoutExerciseViewPage = () => {
   const [isPassed, setIsPassed] = useState(false);
@@ -128,7 +128,6 @@ const WorkoutExerciseViewPage = () => {
                 className={styles.video_control}
                 onClick={handleVideoButton}
               >
-                {" "}
                 <VideoControlButton condition={videoButton} />
               </button>
             ) : null}

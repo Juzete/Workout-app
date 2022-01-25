@@ -22,21 +22,22 @@ const PaginationAndTimer = (props) => {
   };
 
   useEffect(() => {
-    if (isComplete === true && !isPaused) props.videoRef.current.play();
-    else props.videoRef.current.pause();
+    if (isComplete === true && !isPaused) {
+      props.videoRef.current.play();
+    } else {
+      props.videoRef.current.pause();
+    }
   }, [isComplete, isPassed, isPaused, currentExercises, props]);
 
   return (
     <>
       <div className={styles.prevPage}>
-        {" "}
         {props.prevPage > -1 ? (
           <ExercisesPagination direction="prev" setComplete={setIsComplete} />
         ) : null}
       </div>
 
       <div className={styles.timer}>
-        {" "}
         {isComplete === false ? (
           <CircleTimer
             completed={isComplete}
