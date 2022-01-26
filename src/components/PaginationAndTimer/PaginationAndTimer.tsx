@@ -22,7 +22,9 @@ const PaginationAndTimer = (props: ListProps) => {
   const handleComplete = (condition: boolean) => {
     setIsComplete(condition);
     props.isComplete(condition);
-    if (isPassed === true && condition === true) props.isPassed(false);
+    if (isPassed === true && condition === true) {
+      props.isPassed(false);
+    }
     return condition;
   };
   const handlePassed = (condition: boolean) => {

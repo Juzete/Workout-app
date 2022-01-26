@@ -26,20 +26,29 @@ const CircleTimer = (props: ListProps) => {
   const timerIncrement = props.seconds;
 
   useEffect(() => {
-    if (!isPaused) setSeconds(props.seconds);
-    if (isPaused && !props.completed) setSeconds(props.seconds);
+    if (!isPaused) {
+      setSeconds(props.seconds);
+    } else {
+      setCurrentDuration(seconds);
+    }
+    if (isPaused && !props.completed) {
+      setSeconds(props.seconds);
+    }
     if (!props.completed && props.seconds === 5) {
       setProgress(0);
     }
-    if (isPaused) setCurrentDuration(seconds);
   }, [props.seconds, exercisesToView, isPaused]);
 
   useEffect(() => {
-    if (props.completed) setCurrentDuration(exercisesToView.duration);
+    if (props.completed) {
+      setCurrentDuration(exercisesToView.duration);
+    }
   }, [props.completed]);
 
   useEffect(() => {
-    if (seconds === props.seconds && !isPaused) setProgress(0);
+    if (seconds === props.seconds && !isPaused) {
+      setProgress(0);
+    }
     const progressInterval = setInterval(() => {
       if (stopper < 99.9) {
         if (!isPaused) {
@@ -66,7 +75,6 @@ const CircleTimer = (props: ListProps) => {
       clearInterval(progressInterval);
     };
   }, [props.seconds, currentExercises, isPaused]);
-  //115 inline style
   return (
     <div className="timer_wrapper">
       <CircleProgressBar

@@ -1,4 +1,3 @@
-import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -33,7 +32,9 @@ const WorkoutExerciseViewPage = () => {
   let toView: iExercises;
   const setExercisesById = () => {
     exercises.forEach((item) => {
-      if (item.id === currentExercises) toView = item;
+      if (item.id === currentExercises) {
+        toView = item;
+      }
     });
     return toView;
   };
@@ -41,7 +42,6 @@ const WorkoutExerciseViewPage = () => {
   const [exercisesToView, SetExercisesToView] = useState(setExercisesById());
 
   useEffect(() => {
-    console.log({ isComplete }, { isPassed });
     setExercisesToView(setExercisesById());
     handlePaginationButtons(
       exercises,
@@ -49,7 +49,7 @@ const WorkoutExerciseViewPage = () => {
       setPrevPage,
       setNextPage
     );
-    if (isPassed === true) {
+    if (isPassed && isComplete) {
       for (let i = 0; i < exercises.length; i++) {
         if (exercises[i].id === currentExercises) {
           exercises[i].isPassed = true;
@@ -65,7 +65,6 @@ const WorkoutExerciseViewPage = () => {
           exercises[i].isPassed === false
         ) {
           setCurrentExercises(exercises[i].id);
-          setIsPassed(false);
           return;
         }
       }
