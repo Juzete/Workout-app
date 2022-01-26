@@ -33,6 +33,7 @@ const ExercisesPagination = (props: ListProps) => {
     }
     props.setComplete(false);
   };
+
   return (
     <div>
       {props.direction === "prev" ? (

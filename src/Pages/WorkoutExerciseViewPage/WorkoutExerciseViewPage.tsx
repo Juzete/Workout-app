@@ -7,7 +7,6 @@ import { useActions } from "../../hooks/useActions";
 import PaginationAndTimer from "../../components/PaginationAndTimer/PaginationAndTimer";
 import VideoControlButton from "../../components/VideoControlButton/VideoControlButton";
 import { Link } from "react-router-dom";
-import { handlePaginationButtons } from "../../utils/handlePaginationButtons";
 import WorkoutPaused from "../../components/WorkoutPaused/WorkoutPaused";
 import { iExercises } from "../../types/workout";
 
@@ -38,17 +37,18 @@ const WorkoutExerciseViewPage = () => {
     });
     return toView;
   };
-
-  const [exercisesToView, SetExercisesToView] = useState(setExercisesById());
-
-  useEffect(() => {
-    setExercisesToView(setExercisesById());
-    handlePaginationButtons(
-      exercises,
-      currentExercises,
-      setPrevPage,
-      setNextPage
-    );
+  const handlePaginationButtons = () => {
+    const idsArray = exercises.map((item) => item.id);
+    const currentIndex = idsArray.indexOf(currentExercises);
+    if (currentIndex === 0) {
+      setPrevPage(-1);
+    } else if (currentIndex === idsArray.length) {
+      setNextPage(-1);
+    }
+    if (currentIndex > 0) setPrevPage(idsArray[currentIndex - 1]);
+    if (currentIndex < idsArray.length) setNextPage(idsArray[currentIndex + 1]);
+  };
+  const exercisesPassHandler = () => {
     if (isPassed && isComplete) {
       for (let i = 0; i < exercises.length; i++) {
         if (exercises[i].id === currentExercises) {
@@ -69,6 +69,14 @@ const WorkoutExerciseViewPage = () => {
         }
       }
     }
+  };
+
+  const [exercisesToView, SetExercisesToView] = useState(setExercisesById());
+
+  useEffect(() => {
+    setExercisesToView(setExercisesById());
+    handlePaginationButtons();
+    exercisesPassHandler();
     SetExercisesToView(setExercisesById());
     setCurrentDuration(exercisesToView.duration);
   }, [currentExercises, isComplete, isPassed, exercisesToView, exercises]);
