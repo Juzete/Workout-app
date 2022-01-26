@@ -13,22 +13,22 @@ const ExercisesPagination = (props: ListProps) => {
   );
   const { setCurrentExercises } = useActions();
 
+  const setIsPassed = (condition: boolean) => {
+    exercises.forEach((item, index) => {
+      if (exercises[index].id === currentExercises) {
+        exercises[index].isPassed = condition;
+      }
+    });
+  };
+
   const handlePaginationButtons = (condition: string) => {
     const idsArray = exercises.map((item) => item.id);
     const currentIndex = idsArray.indexOf(currentExercises);
     if (condition === "prev") {
-      for (let i = 0; i < exercises.length; i++) {
-        if (exercises[i].id === currentExercises) {
-          exercises[i].isPassed = false;
-        }
-      }
+      setIsPassed(false);
       setCurrentExercises(idsArray[currentIndex - 1]);
     } else {
-      for (let i = 0; i < exercises.length; i++) {
-        if (exercises[i].id === currentExercises) {
-          exercises[i].isPassed = true;
-        }
-      }
+      setIsPassed(true);
       setCurrentExercises(idsArray[currentIndex + 1]);
     }
     props.setComplete(false);

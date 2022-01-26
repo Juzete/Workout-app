@@ -50,12 +50,13 @@ const WorkoutExerciseViewPage = () => {
   };
   const exercisesPassHandler = () => {
     if (isPassed && isComplete) {
-      for (let i = 0; i < exercises.length; i++) {
-        if (exercises[i].id === currentExercises) {
-          exercises[i].isPassed = true;
+      exercises.forEach((item, index) => {
+        if (item.id === currentExercises) {
+          item.isPassed = true;
         }
-      }
-      for (let i = 0; i < exercises.length + 1; i++) {
+      });
+
+      for (let i = 0; i <= exercises.length; i++) {
         if (i === exercises.length) {
           setWorkoutComplete(true);
           return;
@@ -68,6 +69,17 @@ const WorkoutExerciseViewPage = () => {
           return;
         }
       }
+
+      exercises.some((item, index, exercises) => {
+        if (index === exercises.length) {
+          setWorkoutComplete(true);
+          return item;
+        }
+        if (!item.hasOwnProperty("isPassed") || item.isPassed === false) {
+          setCurrentExercises(item.id);
+          return item;
+        }
+      });
     }
   };
 
