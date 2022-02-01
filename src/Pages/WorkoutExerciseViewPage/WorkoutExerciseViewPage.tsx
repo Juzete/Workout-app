@@ -69,17 +69,6 @@ const WorkoutExerciseViewPage = () => {
           return;
         }
       }
-
-      exercises.some((item, index, exercises) => {
-        if (index === exercises.length) {
-          setWorkoutComplete(true);
-          return item;
-        }
-        if (!item.hasOwnProperty("isPassed") || item.isPassed === false) {
-          setCurrentExercises(item.id);
-          return item;
-        }
-      });
     }
   };
 
