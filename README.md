@@ -1,9 +1,5 @@
 <h1 align="center">Workout APP</h1>
 
-## Task
-
-<a  href="https://docs.google.com/document/d/1Q_rP2rMNaK0oaT6RcjggMxDDgW-bHhP3nh-41ibaK2o/edit">_TASK_</a>
-
 ## How to run the app
 
 Optimized version for deploy
