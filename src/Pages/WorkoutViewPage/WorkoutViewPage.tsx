@@ -10,6 +10,10 @@ const WorkoutViewPage = () => {
   const { exercises, error } = useTypedSelector((state) => state.workout);
   const { SetWorkoutIsPaused } = useActions();
 
+  const handleClickButton = () => {
+    SetWorkoutIsPaused(false);
+  };
+
   useEffect(() => {}, [exercises]);
 
   return (
@@ -46,7 +50,7 @@ const WorkoutViewPage = () => {
         <Link
           to={"/workout-exercise-view"}
           className={"start_button"}
-          onClick={() => SetWorkoutIsPaused(false)}
+          onClick={handleClickButton}
         >
           {startWorkoutButtonHandler(exercises)}
         </Link>
